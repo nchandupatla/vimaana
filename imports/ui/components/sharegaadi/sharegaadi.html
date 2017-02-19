@@ -1,0 +1,116 @@
+<div id="signInModal" class="modal">
+  <div class="modal-content">
+    <h4 class="center" style="font-style: italic;" ng-hide="sharegaadi.isPosting">Sign In </h4>
+    <h5 class="center" style="font-style: italic;" ng-show="sharegaadi.isPosting">Please Sign In To Post A Trip</h5>
+    <div class="card brown-grey darken-1">
+      <div class="card-content white-text center">
+        <a class="waves-effect waves-light btn center" ng-click="sharegaadi.facebookLogin()">Facebook Login</a>
+        <br><br>
+        <p class="brown-text">Currently we support only Facebook login. We will only use your facebook profile pic, name and email address.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="signOutModal" class="modal">
+  <div class="modal-content">
+    <h4 class="center" style="font-style: italic;" ng-hide="sharegaadi.isPosting"> Successfully logged out </h4>
+    <h5 class="center">Thank you for using Vimaana Rideshare</h5>
+    <h6 class="center">Please submit the feedback form to help us improve the application.</h6>
+  </div>
+</div>
+<ul id="dropdown1" class="dropdown-content">
+  <li ng-show="sharegaadi.isLoggedIn"><a ng-click="sharegaadi.logout()" ng-show="sharegaadi.isLoggedIn">Logout</a></li>
+</ul>
+<ul id="dropdown2" class="dropdown-content">
+  <li ng-show="sharegaadi.isLoggedIn && sharegaadi.isAdmin"><a ui-sref="admin" style="color: #795548">Admin</a></li>
+  <li ng-show="sharegaadi.isLoggedIn"><a ui-sref="myRides" style="color: #795548">Manage Rides</a></li>
+  <li ng-show="sharegaadi.isLoggedIn"><a ng-click="sharegaadi.logout()" ng-show="sharegaadi.isLoggedIn" style="color: #795548">Logout</a></li>
+</ul>
+<nav>
+  <div class="nav-wrapper white">
+    <!--<img src="img/vimaana_logo.png" style="height: 35px; width: 50px">-->
+    <a href="/" class="brand-logo">
+      <!--<i class="fa fa-vimeo fa-lg brown" aria-hidden="true"></i>-->
+      <!--<i class="material-icons md-48  hide-on-med-and-down">directions_car</i>-->
+      <b class="brown-text text-darken-2" style="font-style: italic;">Vimaana</b>
+      <span class="light orange-text text-darken-3">Rides</span>
+    </a>
+    <a href="#" data-activates="mobile-demo" class="button-collapse brown-text text-darken-2">
+      <i class="material-icons">menu</i></a>
+    <ul class="right hide-on-med-and-down">
+      <li><a class="brown-text text-darken-2" ui-sref="rides"><b>HOME</b></a></li>
+      <li ng-hide="sharegaadi.isLoggedIn">
+        <a class="brown-text text-darken-2" ng-click="sharegaadi.openSignInModal(false);"><b>POST A TRIP</b></a>
+      </li>
+      <li ng-show="sharegaadi.isLoggedIn">
+        <a class="brown-text text-darken-2" ui-sref="addRide"><b>POST A TRIP</b></a>
+      </li>
+      <li ng-hide="sharegaadi.isLoggedIn">
+        <a class="brown-text text-darken-2" ng-click="sharegaadi.openSignInModal(true)"><b>SIGN IN</b></a>
+      </li>
+      <li></li>
+      <!--<li><a class="waves-effect waves-light btn" ui-sref="addRide">Post A Trip</a></li>-->
+      <!-- Dropdown Trigger -->
+      <li ng-show="sharegaadi.isLoggedIn">
+        <a class="brown-text text-darken-2 dropdown-button1" href="#!" data-activates="dropdown2">{{ sharegaadi.currentUser | displayNameFilter }}<i class="material-icons right">arrow_drop_down</i></a>
+      </li>
+    </ul>
+    <ul class="side-nav" id="mobile-demo">
+      <li ng-show="sharegaadi.isLoggedIn">
+        <a> {{ sharegaadi.currentUser | displayNameFilter }}</a>
+      </li>
+      <li><a class="brown-text text-darken-2" ui-sref="rides"><b>HOME</a></li>
+      <li ng-hide="sharegaadi.isLoggedIn"><a class="brown-text text-darken-2" ng-click="sharegaadi.openSignInModal(true)"><b>SIGN IN</b></a></li>
+      <li ng-show="sharegaadi.isLoggedIn"><a class="brown-text text-darken-2" ui-sref="addRide"><b>POST A TRIP</b></a></li>
+      <li ng-show="sharegaadi.isLoggedIn"><a class="brown-text text-darken-2" ui-sref="myRides" style="color: #795548"><b>MANAGE RIDES</b></a></li>
+      <li ng-hide="sharegaadi.isLoggedIn"><a class="brown-text text-darken-2" ng-click="sharegaadi.openSignInModal(false)"><b>POST A TRIP</b></a></li>
+      <!--<li><a class="brown-text text-darken-2" ng-click="sharegaadi.openHowItWorksModal()"><b>How it works</b></a></li>-->
+      <li ng-show="sharegaadi.isLoggedIn"><a class="brown-text text-darken-2" ng-click="sharegaadi.logout()" ng-show="sharegaadi.isLoggedIn" style="color: #795548"><b>LOGOUT</b></a></li>
+      <li><a class="brown-text text-darken-2" ui-sref="feedback">FEEDBACK?</a></li>
+    </ul>
+  </div>
+</nav>
+<div>
+  <div ui-view=""></div>
+</div>
+<footer class="page-footer brown lighten-2">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text text-darken-2"><b>Vimaana Rideshare</b></h5>
+        <p class="white-text text-darken-2">
+         Share rides desi style. Travel with the people who love the same music, speak same language and share similar interests.
+          </p>
+      </div>
+      <div class="col l4 offset-l2 s12">
+        <ul>
+          <li ng-hide="sharegaadi.isLoggedIn"><a class="white-text text-darken-2" ng-click="sharegaadi.openSignInModal(true)">Login</a></li>
+          <li ng-hide="sharegaadi.isLoggedIn"><a class="white-text text-darken-2" ng-click="sharegaadi.openSignInModal(false)">Post A Trip</a></li>
+          <li ng-show="sharegaadi.isLoggedIn"><a class="white-text text-darken-2" ui-sref="addRide">Post A Trip</a></li>
+          <li><a class="white-text text-darken-2" ui-sref="feedback">Feedback?</a></li>
+          <li><a class="white-text text-darken-2" ui-sref="feedback">Help Us To Improve</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="footer-copyright white">
+    <div class="container">
+      <span class="brown-text text-darken-2 center"> © 2017 Copyrights Team Vimaana </span>
+    </div>
+  </div>
+</footer>
+<div class="fixed-action-btn" ng-show="sharegaadi.isLoggedIn">
+  <a class="btn-floating btn-large orange darken-3" ui-sref="addRide">
+    <i class="large material-icons">add</i>
+  </a>
+</div>
+<script>
+  $(document).ready(function () {
+    $(".button-collapse").sideNav({
+      closeOnClick: true
+    });
+    $(".dropdown-button").dropdown();
+    $(".dropdown-button1").dropdown();
+  })
+</script>

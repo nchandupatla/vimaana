@@ -1,0 +1,123 @@
+<div class="slider">
+  <ul class="slides">
+    <li>
+      <img src="img/smoke_road.jpg">
+      <div class="caption center-align">
+        <!--<h3><b>Welcome to Vimaana</b></h3>-->
+        <h5>
+          <b class="black-text">Let's travel together, make new friends and split your fare</b>
+        </h5>
+        <br><br>
+        <span class="row col s12">
+      <span class="col l4 m6 s12 offset-l4 offset-m3">
+      <input class="white brown-text" style="border-radius: 4px;" type="text" ng-model="ridesList.searchText" placeholder="  SEARCH..." 
+          capitalize onfocus="this.placeholder = ''" onblur="this.placeholder = '  SEARCH...'" />
+      <span class="fa fa-search fa-lg search-span brown-text"></span>
+        </span>
+        </span>
+      </div>
+    </li>
+    <li>
+      <img src="img/traveller.jpg">
+      <div class="caption center-align">
+        <!--<h3><b>Welcome to Vimaana</b></h3>-->
+        <h5>
+          <b>Let's travel together, make new friends and split the fare</b>
+        </h5>
+        <br><br>
+        <span class="row col s12">
+      <span class="col l4 m6 s12 offset-l4 offset-m3">
+      <input class="white brown-text" style="border-radius: 4px;" type="text" ng-model="ridesList.searchText" placeholder="  SEARCH..." 
+          capitalize onfocus="this.placeholder = ''" onblur="this.placeholder = '  SEARCH...'" />
+      <span class="fa fa-search fa-lg search-span brown-text"></span>
+        </span>
+        </span>
+      </div>
+    </li>
+    <li>
+      <img src="img/volkswagen.jpg">
+      <div class="caption center-align">
+        <!--<h3><b>Welcome to Vimaana</b></h3>-->
+        <h5>
+          <b>Let's travel together, make new friends and split your fare</b>
+        </h5>
+        <br><br>
+        <span class="row col s12">
+      <span class="col l4 m6 s12 offset-l4 offset-m3">
+      <input class="white brown-text" style="border-radius: 4px;" type="text" ng-model="ridesList.searchText" placeholder="  SEARCH..." 
+          capitalize onfocus="this.placeholder = ''" onblur="this.placeholder = '  SEARCH...'" />
+      <span class="fa fa-search fa-lg search-span brown-text"></span>
+        </span>
+        </span>
+      </div>
+    </li>
+  </ul>
+</div>
+<br>
+<div class="row container">
+  <div dir-paginate="ride in ridesList.rides | itemsPerPage: ridesList.perPage" total-items="ridesList.ridesCount">
+    <div class="col s12 m6 l4">
+      <ul class="collection">
+        <li class="collection-item avatar card-panel grey lighten-3">
+          <img src="{{ridesList.getServiceImageUrl(ride.owner)}}" alt="" class="circle">
+          <a ui-sref="rideDetails({ rideId: ride._id })">
+            <h6 class="brown-text text-darken-2" style="font-size: 125%">{{ride.fromLocation.replace(', United States', '')}} to 
+              <br> {{ride.toLocation.replace(', United States', '')}}</h6>
+          </a>
+          <span class="row s12">
+            <span>
+              <span class="col s10" style="margin-left: -14px">
+              <i class="material-icons md-12 left brown-text" style="margin-right: 5px;line-height: 1.6">date_range</i> 
+              <span class="brown-text text-darken-2">
+              {{ride.date | date:'d MMM yy'}}
+               </span>
+          <i class="material-icons md-12 brown-text hide-on-small-only">access_time</i>
+          <span class="brown-text text-darken-2 hide-on-small-only">{{ride.time | date:'shortTime'}}</span>
+          </span>
+          <span class="col s2 " style="margin-right: 10px">
+              <a class="brown-text text-darken-2 bold" style="font-size: 120%"><b>{{ride.price | currency:"$":0 }}</b></a>
+               </span>
+          </span>
+          </span>
+          <h6 class="left brown-text text-darken-2" style="font-size: 80%">Posted by: {{ridesList.getUser(ride.owner) | displayNameFilterForCards}}</h6>
+          <br>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<dir-pagination-controls on-page-change="ridesList.pageChanged(newPageNumber)"></dir-pagination-controls>
+</div>
+<div class="row">
+  <h4 class="center" ng-show="ridesList.noRides()">Sorry, No Rides Available</h4>
+</div>
+<br>
+<div class="container">
+  <div ng-hide="ridesList.noRides()">
+    <ng-map scrollwheel="false">
+      <directions ng-repeat="ride in ridesList.rides"  origin="{{ride.fromLocation}}" destination="{{ride.toLocation}}">
+      </directions>
+    </ng-map>
+  </div>
+</div>
+<br><br>
+<script>
+  $(document).ready(function () {
+    $('.slider').slider({
+      indicators: false,
+      height: 325,
+      interval: 12000,
+      transition: 10
+    });
+  })
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-92230091-1', 'auto');
+  ga('send', 'pageview');
+
+</script>

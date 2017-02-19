@@ -1,0 +1,18 @@
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+.material-icons.md-12 { font-size: 14px; }
+.search-span {
+    float: right;
+    margin-right: 6px;
+    margin-top: -50px;
+    position: relative;
+    z-index: 2;
+}
+
+@media only screen and (min-width: 993px){
+  .container {
+    width: 95%;
+  }
+}
