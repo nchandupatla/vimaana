@@ -18,6 +18,13 @@
           {{tag.tag}}
         </div>
       </p>
+        <h5>User Uploads</h5>
+     
+    <div class="carousel" ng-repeat="file in rideDetails.getUserUploadFiles(rideDetails.ride.owner) track by $index">
+    <a class="carousel-item">
+      <img src="{{file}}">
+      </a>
+  </div>
     </form>
     <br>
     <a class="waves-effect waves-light btn" ui-sref="rides">Back</a>
@@ -32,6 +39,7 @@
   </div>
 </div>
 <script>
+  $('.carousel').carousel();
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)

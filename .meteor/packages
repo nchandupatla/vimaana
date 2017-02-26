@@ -31,3 +31,4 @@ service-configuration
 fourseven:scss
 materialize:materialize@=0.97.7
 wormy:angularjs-google-maps
+edgee:slingshot

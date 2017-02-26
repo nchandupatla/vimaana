@@ -1,5 +1,6 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
+import { name as Uploads } from '../uploads/uploads';
 
 import {
   Meteor
@@ -89,7 +90,8 @@ const name = 'rideAdd';
 
 // create a module
 export default angular.module(name, [
-    angularMeteor
+    angularMeteor,
+    Uploads
   ]).component(name, {
     template,
     controllerAs: name,

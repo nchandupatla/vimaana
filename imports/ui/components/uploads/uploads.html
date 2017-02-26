@@ -1,0 +1,48 @@
+<div layout="column">
+
+<form name="form">
+  <a ngf-select ngf-change="uploads.addImageFiles($files)" ngf-multiple="true">Select Files To Upload</a>
+  <br>OR
+  <div ngf-drop ng-model="uploads.files" class="drop-box">Drop Files Here</div>
+  <br>
+  <a class="waves-effect waves-light btn" ng-click="uploads.addImages()">submit</a>
+  <br>
+</form>
+
+<div ng-repeat="file in uploads.files">
+  Files: {{file.name}}
+<img ngf-thumbnail="file" ngf-size="{width: 40, height: 40, quality: 1.0}">
+</div>
+
+  <!--<div ngf-drop
+    ngf-select
+    ngf-change="uploads.addImages($files)"
+    ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
+    class="drop-box"
+    ngf-multiple="true"
+    ngf-allow-dir="false"
+    ngf-accept="'image/*'"
+    ngf-drop-available="true"
+    ng-hide="uploads.cropImgSrc">
+    <div>Click here to select image</div>
+    <div>
+      <strong>OR</strong>
+    </div>
+    <div>You can also drop image to here</div>
+
+    <div ng-show="uploads.cropImgSrc" layout="column" class="ng-crop">
+    <div>
+      <h3>Edit &amp; crop</h3>
+     <a class="waves-effect waves-light btn" ng-click="uploads.save()">
+        Save Image
+      </a>
+      <a class="waves-effect waves-light btn" ng-click="uploads.reset()">
+        Cancel
+      </a>
+    </div>
+    <div class="ng-crop-container">
+      <img-crop image="uploads.cropImgSrc" result-image="uploads.myCroppedImage" area-type="square"></img-crop>
+    </div>
+  </div>
+</div>-->
+</div>

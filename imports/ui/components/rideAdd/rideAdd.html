@@ -45,7 +45,9 @@
           <input required placeholder="" id="phone" type="tel" class="validate active" ng-model="rideAdd.ride.contact.mobile">
           <label for="phone">Mobile</label>
         </div>
-        
+         <div class="input-field">
+          <uploads files="rideAdd.ride.images"></uploads>
+        </div>
         <label for="tags">Please add any custom tags and hit enter</label>
         <div id="tags" class="chips chips-initial"></div>
          <a ng-click="rideAdd.showNotes=true" ng-hide="rideAdd.showNotes==true">Add Additional Notes</a>
