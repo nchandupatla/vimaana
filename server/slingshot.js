@@ -6,8 +6,6 @@ Slingshot.fileRestrictions( "myFileUploads", {
 Slingshot.createDirective( "myFileUploads", Slingshot.S3Storage, {
   bucket: "vimaana-files",
   acl: "public-read",
-  AWSAccessKeyId: "AKIAJQIJOILXPGZJJVZA",
-  AWSSecretAccessKey: "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",
   authorize: function () {
     //Deny uploads if user is not logged in.
     if (!this.userId) {
