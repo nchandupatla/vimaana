@@ -55,6 +55,10 @@ class RideDetails {
     return Meteor.users.findOne(id);
   }
 
+  sendEmail(){
+    Meteor.call('sendEmail');
+  }
+
    getUserUploadFiles(id){
      var user=Meteor.users.findOne(id);
      if(user && user.profile && user.profile.files){

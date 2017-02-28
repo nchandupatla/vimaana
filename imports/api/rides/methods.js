@@ -138,7 +138,24 @@ export function rsvp(rideId, rsvp) {
   }
 }
 
+export function sendEmail() {
+if (Meteor.isServer) {
+    SSR.compileTemplate('htmlEmail', Assets.getText('html-email.html'));
+      var emailData = {
+        link: Meteor.absoluteUrl()
+      };
+
+      Email.send({
+        to: "nkchandupatla@gmail.com",
+        from: "Team Vimaana <no-reply@thevimaana.com>",
+        subject: "Welcome to Vimaana",
+        html: SSR.render('htmlEmail', emailData)
+      });
+    }
+}
+
 Meteor.methods({
   invite,
-  rsvp
+  rsvp,
+  sendEmail
 });

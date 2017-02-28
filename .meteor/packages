@@ -26,9 +26,10 @@ accounts-facebook
 accounts-twitter@1.1.12
 tmeasday:publish-counts
 check@1.2.4
-email@1.1.18
+email
 service-configuration
 fourseven:scss
 materialize:materialize@=0.97.7
 wormy:angularjs-google-maps
 edgee:slingshot
+meteorhacks:ssr
