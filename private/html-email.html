@@ -1,4 +1,5 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
   <meta name="viewport" content="width=device-width" />
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -7,13 +8,18 @@
 </head>
 
 <body itemscope itemtype="http://schema.org/EmailMessage">
+  {{#if userExists}}
+  <h1><b>Your post have been saved successfully. Please use manage posts options to update your post.  </b></h1>
+  {{else}}
   <h1><b>Welcome to Vimaana</b></h1>
   <p>Please <a href={{link}}>click</a> on this link to verify your account</p>
   <br>
   <p>Please use below password to login to your account and manage your posts</p>
-   <b>{{password}}</b>
+  <b>{{password}}</b> 
+  {{/if}}
   <p>
-      Thank you using Vimaana App
+    Thank you using Vimaana App
   </p>
 </body>
+
 </html>
