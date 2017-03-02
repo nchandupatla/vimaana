@@ -3,13 +3,13 @@ import { Mongo } from 'meteor/mongo';
 export const Rides = new Mongo.Collection('rides');
 
 Rides.allow({
-  insert(userId, ride) {
-    return userId;
+  insert(ride) {
+    return true;
   },
-  update(userId, ride, fields, modifier) {
-    return userId;
+  update(ride, fields, modifier) {
+   return true;
   },
-  remove(userId, ride) {
-    return userId;
+  remove( ride) {
+    return true;
   }
 });

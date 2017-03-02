@@ -1,3 +1,5 @@
+import { Meteor } from 'meteor/meteor';
+Meteor.startup(() => {
 Slingshot.fileRestrictions( "myFileUploads", {
   allowedFileTypes: [ "image/png", "image/jpeg", "image/gif" ],
   maxSize: 1 * 1024 * 1024
@@ -6,8 +8,6 @@ Slingshot.fileRestrictions( "myFileUploads", {
 Slingshot.createDirective( "myFileUploads", Slingshot.S3Storage, {
   bucket: "vimaana-files",
   acl: "public-read",
-  AWSAccessKeyId: process.env.AWSAccessKeyId,
-  AWSSecretAccessKey: process.env.AWSSecretAccessKey,
   authorize: function () {
     //Deny uploads if user is not logged in.
     if (!this.userId) {
@@ -21,4 +21,5 @@ Slingshot.createDirective( "myFileUploads", Slingshot.S3Storage, {
     //return user.services.facebook.email + "/" + file.name;
     return file.name;
   }
+});
 });

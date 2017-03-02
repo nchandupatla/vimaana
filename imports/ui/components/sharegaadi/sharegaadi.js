@@ -24,7 +24,11 @@ import {
 } from '../feedback/feedback';
 import {
   name as Admin
-} from '../admin/admin';
+} from '../admin/admin';  
+import {
+  name as Verification
+} from '../email_verification/email_verification';  
+
 
 class Sharegaadi {
 
@@ -125,7 +129,8 @@ export default angular.module(name, [
     'accounts.ui',
     UserLogin,
     Feedback,
-    Admin
+    Admin,
+    Verification
   ]).component(name, {
     template,
     controllerAs: name,

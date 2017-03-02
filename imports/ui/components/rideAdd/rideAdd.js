@@ -5,6 +5,7 @@ import { name as Uploads } from '../uploads/uploads';
 import {
   Meteor
 } from 'meteor/meteor';
+import { Accounts } from 'meteor/accounts-base'
 
 import template from './rideAdd.html';
 import {
@@ -33,12 +34,36 @@ class RideAdd {
   }
 
   isFormValid() {
-     if(this.ride.fromLocation && this.ride.toLocation && this.ride.price
-        && this.ride.date && this.ride.time && this.isContactValid()){
-       return true;
-     }
-    return false;
+    //  if(this.ride.fromLocation && this.ride.toLocation && this.ride.price
+    //     && this.ride.date && this.ride.time && this.isContactValid()){
+    //    return true;
+    //  }
+    // return false;
+    return true;
   }
+
+  generatePassword() {
+    var length = 8,
+        charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+        retVal = "";
+    for (var i = 0, n = charset.length; i < length; ++i) {
+        retVal += charset.charAt(Math.floor(Math.random() * n));
+    }
+    return retVal;
+}
+
+createUser(email,password){
+  let user = {
+      email: email,
+      password: password
+    };
+ 
+    Accounts.createUser( user, ( error ) => {
+      if(!error){
+        console.log('successfully created user');
+      }
+    })
+}
 
   submit() {
     if (this.isFormValid()) {
@@ -48,16 +73,36 @@ class RideAdd {
       this.ride.tags = $('.chips-initial').material_chip('data');
       //console.log('ride details '+JSON.stringify(this.ride))
       this.ride.date = new Date(this.ride.date);
-      Rides.insert(this.ride);
-      var userpost={};
-      if(Meteor.user().services.facebook){
-      userpost.email =Meteor.user().services.facebook.email;
-      userpost.name = Meteor.user().services.facebook.name;
-      userpost.date = new Date();
-      UserPost.insert(userpost);
-      }
-      this.reset();
-      $('#successPostModal').openModal();
+      this.ride.verified=false;
+      var toEmail=this.ride.contact.email;
+      var password=this.generatePassword();
+      let user = { email: toEmail, password: password};
+      var inserted = Rides.insert(this.ride, function(err, result){
+        if(result){
+         // var userExists = Accounts.findUserByEmail(toEmail);
+            
+            Accounts.createUser( user, ( error ) => {
+              if(!error){
+                console.log('successfully created user');
+                 Meteor.call('sendEmail',{
+                  toEmail:toEmail,
+                  id: result,
+                  password: password
+                });
+              }
+            })
+        }
+      });
+      
+      
+      // if(Meteor.user().services.facebook){
+      // userpost.email =Meteor.user().services.facebook.email;
+      // userpost.name = Meteor.user().services.facebook.name;
+      // userpost.date = new Date();
+      // UserPost.insert(userpost);
+      // }
+     // this.reset();
+    // $('#successPostModal').openModal();
     }
   }
 
@@ -119,13 +164,13 @@ function config($stateProvider) {
       controllerAs: name,
       controller: RideAdd,
       resolve: {
-        currentUser($q) {
-          if (Meteor.userId() === null) {
-            return $q.reject('AUTH_REQUIRED');
-          } else {
-            return $q.resolve();
-          }
-        }
+        // currentUser($q) {
+        //   if (Meteor.userId() === null) {
+        //     return $q.reject('AUTH_REQUIRED');
+        //   } else {
+        //     return $q.resolve();
+        //   }
+        // }
       }
     });
 }
