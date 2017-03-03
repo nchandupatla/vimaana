@@ -59,6 +59,13 @@ function generatePassword() {
     }
     return retVal;
 }
+export function createNewAccount(userObj) {
+     var user = Accounts.findUserByEmail(userObj.email);
+      if(user == null){
+     Accounts.createUser({email:userObj.email, password:userObj.password});
+     sendEmail({toEmail:userObj.email, id:'fsdf', userExists:null, password:userObj.password});
+}
+}
 
 export function createAccount(userObj) {
     var userExists = Accounts.findUserByEmail(userObj.email);
@@ -76,5 +83,6 @@ export function createAccount(userObj) {
 Meteor.methods({
     sendEmail,
     createAccount,
-    verifyAccount
+    verifyAccount,
+    createNewAccount
 });

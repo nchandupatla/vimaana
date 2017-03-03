@@ -3,8 +3,9 @@
     <center>
       <div class="section"></div>
 
-      <h5 class="indigo-text" ng-hide="login.forgetPassword">Please, login into your account</h5>
+      <h5 class="indigo-text" ng-hide="login.forgetPassword || login.create">Please, login into your account</h5>
       <h5 class="indigo-text" ng-show="login.forgetPassword">Forget Password?</h5>
+      <h5 class="indigo-text" ng-show="login.create">Create Account</h5>
       <div class="section"></div>
 
       <div class="container">
@@ -29,21 +30,22 @@
                 <label for='password'>Enter your password</label>
               </div>
               <label style='float: right;'>
-								<a class='pink-text' ng-hide="login.forgetPassword" ng-click="login.forget()"><b>Forgot Password?</b></a>
+								<a class='pink-text' ng-hide="login.forgetPassword || login.create " ng-click="login.forget()"><b>Forgot Password?</b></a>
 							</label>
             </div>
 
             <br />
             <center>
               <div class='row'>
-                <button ng-click="login.login()"type='submit' ng-hide="login.forgetPassword" name='btn_login' class='col s12 btn btn-large waves-effect'>Login</button>
+                <button ng-click="login.login()"type='submit' ng-hide="login.forgetPassword || login.create" name='btn_login' class='col s12 btn btn-large waves-effect'>Login</button>
                 <button ng-click="login.reset()"type='submit' ng-show="login.forgetPassword" name='btn_login' class='col s12 btn btn-large waves-effect'>Reset Password</button>
+                <button ng-click="login.createAccount()"type='submit' ng-show="login.create" name='btn_login' class='col s12 btn btn-large waves-effect'>Create Account</button>
               </div>
             </center>
           </form>
         </div>
       </div>
-      <a href="#!">Create account</a>
+      <a ng-hide="login.create" ng-click="login.createLink()">Create account</a>
     </center>
 
     <div class="section"></div>

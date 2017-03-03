@@ -11,6 +11,7 @@ class Login {
     this.$state = $state;
     $reactive(this).attach($scope);
     this.forgetPassword = false;
+    this.create=false;
 
   }
 
@@ -38,6 +39,17 @@ class Login {
           }
         })
       }
+  createLink(){
+    this.create=true;
+  }
+  createAccount(){
+    Meteor.call('createNewAccount', {
+                email: this.email,
+                password: this.password,
+            });
+    this.reset();
+    
+  }
 }
 
 const name = 'login';
