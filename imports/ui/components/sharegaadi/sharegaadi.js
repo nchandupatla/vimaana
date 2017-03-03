@@ -28,6 +28,9 @@ import {
 import {
   name as Verification
 } from '../email_verification/email_verification';  
+import {
+  name as ChangePwd
+} from '../changePwd/changePwd'; 
 
 
 
@@ -131,7 +134,8 @@ export default angular.module(name, [
     Feedback,
     Admin,
     Verification,
-    Login
+    Login,
+    ChangePwd
   ]).component(name, {
     template,
     controllerAs: name,
