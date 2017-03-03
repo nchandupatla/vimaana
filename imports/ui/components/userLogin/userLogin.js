@@ -51,8 +51,8 @@ export default angular.module(name, [
 function config($stateProvider) {
   'ngInject';
   $stateProvider
-    .state('login', {
-      url: '/login',
+    .state('userlogin', {
+      url: '/userlogin',
       template: template,
       controllerAs: name,
       controller: UserLogin,

@@ -11,9 +11,6 @@ import {
   name as RideDetails
 } from '../rideDetails/rideDetails';
 import {
-  name as UserLogin
-} from '../userLogin/userLogin';
-import {
   name as UserRides
 } from '../userRides/userRides';
 import {
@@ -26,8 +23,12 @@ import {
   name as Admin
 } from '../admin/admin';  
 import {
+  name as Login
+} from '../login/login';
+import {
   name as Verification
 } from '../email_verification/email_verification';  
+
 
 
 class Sharegaadi {
@@ -127,10 +128,10 @@ export default angular.module(name, [
     UserRides,
     RideUpdate,
     'accounts.ui',
-    UserLogin,
     Feedback,
     Admin,
-    Verification
+    Verification,
+    Login
   ]).component(name, {
     template,
     controllerAs: name,
