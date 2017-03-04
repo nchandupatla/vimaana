@@ -31,6 +31,12 @@ import {
 import {
   name as ChangePwd
 } from '../changePwd/changePwd'; 
+import {
+  name as LandingPage
+} from '../landing_page/landing_page';
+import {
+  name as NewAd
+} from '../newAd/newAd';
 
 
 
@@ -135,7 +141,9 @@ export default angular.module(name, [
     Admin,
     Verification,
     Login,
-    ChangePwd
+    ChangePwd,
+    LandingPage,
+    NewAd
   ]).component(name, {
     template,
     controllerAs: name,
@@ -196,7 +204,7 @@ function config($locationProvider, $urlRouterProvider, $qProvider) {
 
   $locationProvider.html5Mode(true);
 
-  $urlRouterProvider.otherwise('/rides');
+  $urlRouterProvider.otherwise('/');
 
   $qProvider.errorOnUnhandledRejections(false);
 

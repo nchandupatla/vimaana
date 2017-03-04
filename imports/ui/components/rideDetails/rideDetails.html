@@ -30,12 +30,24 @@
     <a class="waves-effect waves-light btn" ui-sref="rides">Back</a>
   </div>
 </div>
-<div class="container">
+<div class="container row">
   <div style="height:500px">
-    <ng-map>
-      <directions draggable="false" origin="{{rideDetails.ride.fromLocation}}" destination="{{rideDetails.ride.toLocation}}">
+    <div class="col s8">
+    <ng-map scrollwheel="false">
+      <directions draggable="false"
+          panel="directions-panel"
+          origin="{{rideDetails.ride.fromLocation}}" 
+          destination="{{rideDetails.ride.toLocation}}">
       </directions>
     </ng-map>
+    </div>
+    <div class="col s4">
+    <div class="input-field">
+          <input required placeholder="" ng-model="rideDetails.ride.toLocation" googleplace id="start_loc" type="text" class="validate">
+          <label for="start_loc">Distance From</label>
+    </div>
+    <div id="directions-panel">
+    </div>
   </div>
 </div>
 <script>
