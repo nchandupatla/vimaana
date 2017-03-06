@@ -1,1 +1,33 @@
-<h4 class="center">Select Post Type</h4>
+<h4 class="center">Post An AD</h4>
+<br>
+<div class="row">
+    <form class="col s12 m6 l6  offset-m3 offset-l3" name="myForm"  novalidate>
+      <div class="row">
+        <div class="input-field">
+    <select ng-model="newAd.category">
+      <option value="" disabled selected>Select Post Type</option>
+      <optgroup label="Rentals">
+        <option value="1">I Want To Offer Rentals</option>
+        <option value="2">I Am Looking for Rentals</option>
+      </optgroup>
+      <optgroup label="Roommates">
+        <option value="3">I Want To Offer Room </option>
+        <option value="4">I Am Looking for Room</option>
+      </optgroup>
+      <optgroup label="Rideshare">
+        <option value="5">I Want To Offer Ride</option>
+        <option value="6">I Am Looking for Ride</option>
+      </optgroup>
+    </select>
+        </div>
+      </div>
+      <div>
+          <a class="waves-effect waves-light btn right" ng-click="newAd.onNext()">Next</a>
+      </div>
+    </form>
+    <br>
+    <br>
+</div>
+<script>
+$('select').material_select();
+</script>

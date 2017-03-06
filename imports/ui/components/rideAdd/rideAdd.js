@@ -16,11 +16,17 @@ import {
 } from '../../../api/userPosts';
 
 class RideAdd {
-  constructor($scope, $state, $reactive) {
+  constructor($scope, $state, $reactive,$stateParams) {
     this.$state = $state;
     $reactive(this).attach($scope);
     this.subscribe('users');
     this.subscribe('userpost');
+    this.type=$stateParams.type;
+    if(this.type=='5'){
+      this.text="I Want To Offer Ride";
+    }else{
+      this.text="I Am Looking for Ride";
+    }
 
     this.ride = {};
     this.ride.rules = {};
@@ -126,7 +132,7 @@ function config($stateProvider) {
   'ngInject';
   $stateProvider
     .state('addRide', {
-      url: '/addRide',
+      url: '/addRide/:type',
       template: template,
       controllerAs: name,
       controller: RideAdd,

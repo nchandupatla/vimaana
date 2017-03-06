@@ -37,6 +37,15 @@ import {
 import {
   name as NewAd
 } from '../newAd/newAd';
+import {
+  name as NewRentals
+} from '../newRentals/newRentals';
+import {
+  name as NewRoommates
+} from '../newRoommates/newRoommates';
+import {
+  name as PostComplete
+} from '../postComplete/postComplete';
 
 
 
@@ -143,7 +152,10 @@ export default angular.module(name, [
     Login,
     ChangePwd,
     LandingPage,
-    NewAd
+    NewAd,
+    NewRentals,
+    NewRoommates,
+    PostComplete
   ]).component(name, {
     template,
     controllerAs: name,
