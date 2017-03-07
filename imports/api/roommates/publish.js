@@ -1,25 +1,25 @@
 import { Meteor } from 'meteor/meteor';
 import { Counts } from 'meteor/tmeasday:publish-counts';
 
-import { Rentals } from './collection';
+import { Roommates } from './collection';
 
 if (Meteor.isServer) {
-  Meteor.publish('rentals', function(options, searchString) {
+  Meteor.publish('roommates', function(options, searchString) {
     const selector = {
      
     };
 
     if (typeof searchString === 'string' && searchString.length) {
-      selector.location = {
+      selector.fromLocation = {
         $regex: `.*${searchString}.*`,
         $options : 'i'
       };
     }
 
-    Counts.publish(this, 'numberOfRentals', Rentals.find(selector), {
+    Counts.publish(this, 'numberOfRoommates', Roommates.find(selector), {
       noReady: true
     });
 
-    return Rentals.find(selector, options);
+    return Roommates.find(selector, options);
   });
 }

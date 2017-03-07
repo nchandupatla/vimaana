@@ -46,6 +46,12 @@ import {
 import {
   name as PostComplete
 } from '../postComplete/postComplete';
+import {
+  name as RentalList
+} from '../rentals/rentals';
+import {
+  name as RoommateList
+} from '../roommates/roommates';
 
 
 
@@ -155,7 +161,9 @@ export default angular.module(name, [
     NewAd,
     NewRentals,
     NewRoommates,
-    PostComplete
+    PostComplete,
+    RentalList,
+    RoommateList
   ]).component(name, {
     template,
     controllerAs: name,

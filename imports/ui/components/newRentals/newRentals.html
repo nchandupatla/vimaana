@@ -8,9 +8,119 @@
   </div>
 </nav>
 <br>
+<div class="row container">
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab col s3"><a class="active" href="#test1">Required</a></li>
+        <li class="tab col s3 "><a class="active" href="#test2">Optional</a></li>
+        <li class="tab col s3 "><a href="#test3">Uploads</a></li>
+        <li class="tab col s3 "><a href="#test4">Contact</a></li>
+      </ul>
+    </div>
+    <br>
+    <div id="test1" class="col s12">
+      <br><br>
+        <div class="row col s12 m8 l8 offset-m2 offset-l2">
+      <div class="input-field">
+        <label for="Category">Category</label>
+        <select ng-model="newRentals.form.subcategory" id="Category">
+              <option value="" disabled selected>Select Rental Category</option>
+              <option value="Apartment">Apartment</option>
+              <option value="Town House">Town House</option>
+              <option value="Condo">Condo</option>
+              <option value="Single Family Home">Single Family Home</option>
+            </select>
+      </div>
+      <div class="input-field">
+        <input required placeholder="" ng-model="newRentals.form.location" details="newRentals.form.placeDetails" googleplace id="start_loc"
+          type="text" class="validate">
+          <label for="start_loc">Location</label>
+      </div>
+      <div class="input-field row s12 l12 m12">
+        <span class="col s4 l4 m4">
+           <input limit-to="3" placeholder="" ng-model="newRentals.form.beds"  id="beds" type="number" class="validate">
+          <label for="beds">No. of Beds</label>
+          </span>
+        <span class="col s4 l4 m4">
+             <label for="price">Price</label>
+            <input limit-to="10" placeholder="" ng-model="newRentals.form.price"  id="price" type="number" class="validate">
+           </span>
+        <span class="col s4 l4 m4">
+             <label for="sqft">Sq.ft</label>
+            <input limit-to="10" placeholder="" ng-model="newRentals.form.sqft"  id="sqft" type="number" class="validate">
+           </span>
+      </div>
+      <div class="input-field row s12 l12 m12">
+        <span class="col s6 l6 m6">
+          <input required  placeholder=""  type="date" class="datepicker" ng-model="newRentals.form.dateFrom" id="date1">
+          <label for="date1">Available From</label>
+          </span>
+        <span class="col s6 l6 m6">
+             <label for="date2">Available To</label>
+            <input required  placeholder=""  type="date" class="datepicker" ng-model="newRentals.form.dateTo" id="date2">
+          </span>
+      </div>
+      <a class="waves-effect waves-light btn right" ng-click="newRentals.next('test2')">Next</a>
+    </div>
+     
+    </div>
+    <div id="test2" class="col s12 m8 l8 offset-m2 offset-l2">
+    <div class="input-field">
+        <textarea id="textarea1" class="materialize-textarea" ng-model="newRentals.form.description"></textarea>
+        <label for="textarea1">Description</label>
+      </div>
+      <a class="waves-effect waves-light btn right" ng-click="newRentals.next('test3')">Next</a>
+      <a class="waves-effect waves-light btn left" ng-click="newRentals.next('test1')">Back</a>
+    </div>
+    <div id="test3" class="col s12 m8 l8 offset-m2 offset-l2">
+      <div class="row">
+      <div class="input-field">
+        <uploads files="newRentals.form.images"></uploads>
+      </div>
+      </div>
+      <a class="waves-effect waves-light btn right" ng-click="newRentals.next('test4')">Next</a>
+      <a class="waves-effect waves-light btn left" ng-click="newRentals.next('test2')">Back</a>
+    </div>
+    <div id="test4" class="col s12 m8 l8 offset-m2 offset-l2">
+       <div class="row">
+         <div class="input-field">
+          <label>How would you like to be contacted?</label><br>
+          <p>
+          <input class="with-gap" value="mobile" name="group3" type="radio" id="test5" ng-model="newRentals.form.contactType" />
+          <label for="test5">mobile</label>
+          <input class="with-gap " value="email" name="group3" type="radio" id="test6" ng-model="newRentals.form.contactType"  />
+          <label for="test6">email</label>
+          <input class="with-gap" value="both" name="group3" type="radio" id="test7" ng-model="newRentals.form.contactType" checked />
+          <label for="test7">mobile and email</label>
+          </p>
+        </div>
+          <div class="input-field">
+          <input required placeholder="" id="name" type="tel" class="validate active" ng-model="newRentals.form.contact.name">
+          <label for="name">Name</label>
+        </div>
+        <div class="input-field" ng-if="newRentals.form.contactType!='mobile'">
+          <input required placeholder="" id="email" type="email" class="validate" ng-model="newRentals.form.contact.email">
+          <label for="email">Email</label>
+        </div>
+        <div class="input-field" ng-if="newRentals.form.contactType!='email'">
+          <input required placeholder="" id="phone" type="tel" class="validate active" ng-model="newRentals.form.contact.mobile">
+          <label for="phone">Mobile</label>
+        </div>
+        <input type="checkbox" ng-model="newRentals.form.contact.preference" class="filled-in" id="filled-in-box" checked="checked" />
+        <label for="filled-in-box">Would you like our users to see this contact info directly or hide them?</label><br>
+        <label>Please enter valid email or mobile as you will be asked to verify your email or mobile number for post to be saved successfully</label>
+        <div>
+          <br>
+          <!--ng-disabled="!rideAdd.isFormValid()"-->
+          <a class="waves-effect waves-light btn right"  ng-click="newRentals.submit()" >Submit</a>  
+          <a class="waves-effect waves-light btn left" ng-click="newRentals.next('test1')">Back</a>
+        </div>
+    </div>
+    </div>
+  </div>
 <div class="row">
   <br>
-  <form class="col s12 m6 l6  offset-m3 offset-l3" name="myForm" novalidate>
+  <!--<form class="col s12 m6 l6  offset-m3 offset-l3" name="myForm" novalidate>
     <div class="row">
       <div class="input-field">
         <select ng-model="newRentals.form.category" id="Category">
@@ -51,9 +161,6 @@
             <input required  placeholder=""  type="date" class="datepicker" ng-model="newRentals.form.dateTo" id="date2">
           </span>
       </div>
-      <div class="input-field">
-        <uploads files="newRentals.form.images"></uploads>
-      </div>
       <a ng-click="newRentals.form.showNotes=true" ng-hide="newRentals.form.showNotes==true">Add Description</a>
          <a ng-click="newRentals.form.showNotes=false" ng-show="newRentals.form.showNotes==true">Hide Description</a>
       <div class="input-field" ng-show="newRentals.form.showNotes==true">
@@ -61,43 +168,13 @@
         <label for="textarea1">Description</label>
       </div>
       <br>
-       <div class="input-field">
-          <label>How would you like to be contacted?</label><br>
-          <p>
-          <input class="with-gap" value="mobile" name="group3" type="radio" id="test5" ng-model="newRentals.form.contactType" />
-          <label for="test5">mobile</label>
-          <input class="with-gap " value="email" name="group3" type="radio" id="test6" ng-model="newRentals.form.contactType"  />
-          <label for="test6">email</label>
-          <input class="with-gap" value="both" name="group3" type="radio" id="test7" ng-model="newRentals.form.contactType" checked />
-          <label for="test7">mobile and email</label>
-          </p>
-        </div>
-        <div class="input-field">
-          <input required placeholder="" id="name" type="tel" class="validate active" ng-model="newRentals.form.contact.name">
-          <label for="name">Name</label>
-        </div>
-        <div class="input-field" ng-if="newRentals.form.contactType!='mobile'">
-          <input required placeholder="" id="email" type="email" class="validate" ng-model="newRentals.form.contact.email">
-          <label for="email">Email</label>
-        </div>
-        <div class="input-field" ng-if="newRentals.form.contactType!='email'">
-          <input required placeholder="" id="phone" type="tel" class="validate active" ng-model="newRentals.form.contact.mobile">
-          <label for="phone">Mobile</label>
-        </div>
-        <input type="checkbox" ng-model="newRentals.form.contact.preference" class="filled-in" id="filled-in-box" checked="checked" />
-        <label for="filled-in-box">Would you like our users to see this contact info directly or hide them?</label><br>
-        <label>Please enter valid email or mobile as you will be asked to verify your email or mobile number for post to be saved successfully</label>
-        <div>
-          <br>
-          <!--ng-disabled="!rideAdd.isFormValid()"-->
-          <a class="waves-effect waves-light btn"  ng-click="newRentals.submit()" >Submit</a>  
-          <a class="waves-effect waves-light btn" ui-sref="newAd">Back</a>
-        </div>
+        
     </div>
-  </form>
+  </form>-->
 </div>
 <script>
   $('select').material_select();
+  $('ul.tabs').tabs();
   $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
     selectYears: 15, // Creates a dropdown of 15 years to control year

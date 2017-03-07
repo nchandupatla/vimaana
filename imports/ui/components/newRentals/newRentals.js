@@ -20,13 +20,16 @@ class NewRentals {
     }
     this.form={};
   } 
-
+  next(id){
+    $('ul.tabs').tabs('select_tab', id);
+  }
   submit(){
       console.log('rentals '+JSON.stringify(this.form));
       this.form.dateFrom= new Date(this.form.dateFrom);
       this.form.dateTo= new Date(this.form.dateTo);
       this.form.verified=false;
       var email=this.form.contact.email;
+      this.form.category=this.type;
       Rentals.insert(this.form, function(err, result){
         if(result){
         Meteor.call('createAccount', {

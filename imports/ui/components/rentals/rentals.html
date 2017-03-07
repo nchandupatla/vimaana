@@ -1,0 +1,42 @@
+<div class="row container">
+  <input style="border-radius: 4px;" type="text" ng-model="rentals.searchText" placeholder="  SEARCH..." 
+          capitalize onfocus="this.placeholder = ''" onblur="this.placeholder = '  SEARCH...'" />
+  <div dir-paginate="rental in rentals.rentals | itemsPerPage: rentals.perPage" total-items="rentals.rentalsCount">
+   
+   <ul class="collection">
+      <li class="collection-item">
+       <span class="row">
+         <span class="col s2">
+         {{rental.subcategory}} 
+         </span>
+         <span class="col s2">
+         Beds: {{rental.beds}}
+         </span>
+         <span class="col s2">
+         Rent:{{rental.price | currency:"$":0 }}/Month 
+         </span>
+         <span class="col s2">
+         Sqft:{{rental.sqft}} 
+         </span>
+         <span class="col s4">
+         Availablity: {{rental.dateFrom | date:'d MMM yy'}}
+         - {{rental.dateTo | date:'d MMM yy'}}
+         </span>
+       </span><br>
+       <span class="row">
+         <span class="col s3">
+          {{rental.location.replace(', United States', '')}}
+         </span>
+          <span class="col s3">
+          Email Verified:{{rental.verified}}
+          </span>
+       </span>
+      </li>
+    </ul>
+   
+   
+   
+   
+</div>
+</div>
+<dir-pagination-controls on-page-change="rentals.pageChanged(newPageNumber)"></dir-pagination-controls>
