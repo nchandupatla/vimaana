@@ -12,14 +12,14 @@ Slingshot.createDirective( "myFileUploads", Slingshot.S3Storage, {
   AWSSecretAccessKey: process.env.AWSSecretAccessKey,
   authorize: function () {
     //Deny uploads if user is not logged in.
-    if (!this.userId) {
-      var message = "Please login before posting files";
-      throw new Meteor.Error("Login Required", message);
-    }
+    // if (!this.userId) {
+    //   var message = "Please login before posting files";
+    //   throw new Meteor.Error("Login Required", message);
+    // }
     return true;
   },
   key: function ( file ) {
-    var user = Meteor.users.findOne( this.userId );
+    //var user = Meteor.users.findOne( this.userId );
     //return user.services.facebook.email + "/" + file.name;
     return file.name;
   }

@@ -27,7 +27,7 @@
             <form>
               <new form="newAd.form"></new>
               <div class="input-field">
-                <a class="waves-effect waves-light btn center" ng-click="newAd.onNext('third')">Next</a>
+                <a class="waves-effect waves-light btn center" ng-click="newAd.onNext('third', 'divid2')">Continue</a>
               </div>
               <br>
             </form>
@@ -35,9 +35,9 @@
         </li>
         <li>
           <div class="collapsible-header left-align brown lighten-2 white-text third">Upload Images</div>
-          <div class="collapsible-body container">
+          <div id="divid2" class="collapsible-body container">
             <br>
-            <a ngf-accept="'image/*'" ngf-select ng-model="newAd.files" ngf-multiple="true" class="left">Upload Images</a>
+            <a ngf-accept="'image/*'" ngf-select ngf-change="newAd.addImageFiles($files)"  ngf-multiple="true" class="left">Upload Images</a>
             (You can upload upto 6 images)
             <br>
             <div class="left-align" ng-repeat="file in newAd.files">
@@ -46,7 +46,7 @@
             </div>
             <form><br>
               <div class="input-field">
-                <a class="waves-effect waves-light btn" ng-click="newAd.onNext('fourth')">Next</a>
+                <a class="waves-effect waves-light btn" ng-click="newAd.onNext('fourth', 'divid3')">Continue</a>
               </div>
               <br>
             </form>
@@ -54,7 +54,7 @@
         </li>
         <li>
           <div class="collapsible-header left-align brown lighten-2 white-text fourth">Contact Information</div>
-          <div class="collapsible-body container">
+          <div id="divid3" class="collapsible-body container">
             <form>
               <contact form="newAd.form"></contact>
               <div class="input-field">
