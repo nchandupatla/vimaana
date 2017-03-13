@@ -13,11 +13,7 @@ class NewRoommates {
     this.$state = $state;
     $reactive(this).attach($scope);
     this.type=$stateParams.type;
-     if(this.type=='3'){
-      this.text="I Want To Offer Roommates";
-    }else{
-      this.text="I Am Looking for Roommates";
-    }
+    this.text=this.type;
   } 
    next(id){
     $('ul.tabs').tabs('select_tab', id);
@@ -28,6 +24,8 @@ class NewRoommates {
       this.form.dateTo= new Date(this.form.dateTo);
       this.form.verified=false;
       var email=this.form.contact.email;
+      this.form.category=this.type;
+      this.form.createdAt=new Date();
       Roommates.insert(this.form, function(err, result){
         if(result){
         Meteor.call('createAccount', {
@@ -48,18 +46,4 @@ export default angular.module(name, [
   ]).component(name, {
     template,
     controllerAs: name,
-    controller: NewRoommates
   })
-  .config(config)
-
-
-function config($stateProvider) {
-  'ngInject';
-  $stateProvider
-    .state('newRoommates', {
-      url: '/newRoommates/:type',
-      template: template,
-      controllerAs: name,
-      controller: NewRoommates
-    });
-}

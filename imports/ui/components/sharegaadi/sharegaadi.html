@@ -27,21 +27,26 @@
   <li ng-show="sharegaadi.isLoggedIn"><a class="brown-text text-darken-2" ui-sref="changePwd" style="color: #795548"><b>Change Password</b></a></li>
   <li ng-show="sharegaadi.isLoggedIn"><a ng-click="sharegaadi.logout()" ng-show="sharegaadi.isLoggedIn" style="color: #795548">Logout</a></li>
 </ul>
+<div class="navbar-fixed">
 <nav>
   <div class="nav-wrapper white">
-    <a href="/" class="brand-logo">
+    <a href="/" class="brand-logo center">
       <b class="brown-text text-darken-2">&nbsp;&nbsp;WeDesi</b>
       <span class="light orange-text text-darken-3" style="font-size: 12px"><b>Classifieds</b></span>
     </a>
     <a href="#" data-activates="mobile-demo" class="button-collapse brown-text text-darken-2">
       <i class="material-icons">menu</i></a>
-    <ul class="right hide-on-med-and-down">
-      <li><a class="brown-text text-darken-2" ui-sref="rides"><b>HOME</b></a></li>
+    <ul class="hide-on-med-and-down">
+       <li>
+      </li>
       <li>
         <a class="brown-text text-darken-2" ui-sref="newAd"><b>POST AN AD</b></a>
       </li>
+    </ul>
+    <ul class="right hide-on-med-and-down">
+      <li><a class="brown-text text-darken-2" ui-sref="landingPage"><b>HOME</b></a></li>
       <li ng-hide="sharegaadi.isLoggedIn">
-        <a class="brown-text text-darken-2" ui-sref="login"><b>MY ACCOUNT</b></a>
+        <a class="brown-text text-darken-2" ui-sref="login"><b>SIGN IN</b></a>
       </li>
       <li></li>
       <!--<li><a class="waves-effect waves-light btn" ui-sref="addRide">Post A Trip</a></li>-->
@@ -54,7 +59,7 @@
       <li ng-show="sharegaadi.isLoggedIn">
         <a> {{ sharegaadi.currentUser | displayNameFilter }}</a>
       </li>
-      <li><a class="brown-text text-darken-2" ui-sref="rides"><b>HOME</a></li>
+      <li><a class="brown-text text-darken-2" ui-sref="landingPage"><b>HOME</a></li>
       <li ng-hide="sharegaadi.isLoggedIn"><a class="brown-text text-darken-2" ui-sref="login"><b>SIGN IN</b></a></li>
       <li ng-show="sharegaadi.isLoggedIn"><a class="brown-text text-darken-2" ui-sref="addRide"><b>POST A TRIP</b></a></li>
       <li ng-show="sharegaadi.isLoggedIn"><a class="brown-text text-darken-2" ui-sref="myRides" style="color: #795548"><b>MANAGE RIDES</b></a></li>
@@ -66,35 +71,11 @@
     </ul>
   </div>
 </nav>
-<div class="row col l12" style="background-color: #E7807B">
-  <div class="col l3 offset-l2">
-    <div class="input-field">
-      <select class="browser-default">
-    <option value="" disabled selected>Select</option>
-    <option value="1">Rentals</option>
-    <option value="2">Roommates</option>
-    <option value="3">Rideshare</option>
-    <option value="4">Jobs</option>
-    <option value="5">Used Cars</option>
-    <option value="6">Services</option>
-  </select>
-    </div>
-  </div>
-  <!--<div class="col l1 center">
-    <br>in
-  </div>-->
-    <div class="col l3 left" style="margin-top: 10px">
-    <input placeholder="     Location" ng-model="newRentals.form.location" details="newRentals.form.placeDetails" googleplace id="start_loc"
-         class=" white black-text" type="text">
-    </div>
-    <div class="col l1">
-        <a style="margin-top: 10px" class="waves-effect waves-light btn white black-text" ng-click="newAd.onNext()">Search</a>
-    </div>
-  </div>
 </div>
-<div>
-  <div ui-view=""></div>
-</div>
+
+
+  <div ui-view="" class="container"></div>
+
 <!--<footer class="page-footer brown lighten-2">
   <div class="container">
     <div class="row">

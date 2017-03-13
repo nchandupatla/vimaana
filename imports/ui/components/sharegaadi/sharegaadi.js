@@ -1,6 +1,7 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import uiRouter from 'angular-ui-router';
+import angularMoment from 'angular-moment';
 
 import './sharegaadi.css';
 import template from './sharegaadi.html';
@@ -40,9 +41,7 @@ import {
 import {
   name as NewRentals
 } from '../newRentals/newRentals';
-import {
-  name as NewRoommates
-} from '../newRoommates/newRoommates';
+
 import {
   name as PostComplete
 } from '../postComplete/postComplete';
@@ -52,6 +51,8 @@ import {
 import {
   name as RoommateList
 } from '../roommates/roommates';
+import { name as New } from '../new/new';
+import { name as Contact } from '../contact/contact';
 
 
 
@@ -152,6 +153,7 @@ export default angular.module(name, [
     UserRides,
     RideUpdate,
     'accounts.ui',
+    angularMoment,
     Feedback,
     Admin,
     Verification,
@@ -159,11 +161,11 @@ export default angular.module(name, [
     ChangePwd,
     LandingPage,
     NewAd,
-    NewRentals,
-    NewRoommates,
     PostComplete,
     RentalList,
-    RoommateList
+    RoommateList,
+    New,
+    Contact
   ]).component(name, {
     template,
     controllerAs: name,

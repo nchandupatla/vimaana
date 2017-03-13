@@ -1,42 +1,40 @@
-<div class="row container">
-  <input style="border-radius: 4px;" type="text" ng-model="roommates.searchText" placeholder="  SEARCH..." 
-          capitalize onfocus="this.placeholder = ''" onblur="this.placeholder = '  SEARCH...'" />
-  <div dir-paginate="rental in roommates.roommates | itemsPerPage: roommates.perPage" total-items="roommates.roommatesCount">
-   
-   <ul class="collection">
-      <li class="collection-item">
-       <span class="row">
-         <span class="col s2">
-         {{rental.subcategory}} 
-         </span>
-         <span class="col s2">
-         Beds: {{rental.beds}}
-         </span>
-         <span class="col s2">
-         Rent:{{rental.price | currency:"$":0 }}/Month 
-         </span>
-         <span class="col s2">
-         Sqft:{{rental.sqft}} 
-         </span>
-         <span class="col s4">
-         Availablity: {{rental.dateFrom | date:'d MMM yy'}}
-         - {{rental.dateTo | date:'d MMM yy'}}
-         </span>
-       </span><br>
-       <span class="row">
-         <span class="col s3">
-          {{rental.location.replace(', United States', '')}}
-         </span>
-          <span class="col s3">
-          Email Verified:{{rental.verified}}
-          </span>
-       </span>
-      </li>
-    </ul>
-   
-   
-   
-   
+<div class="row center container">
+  <div class="col s12 col l9 offset-l1">
+   <div class="col s3">
+  <input type="text" placeholder="Location" ng-model="roommates.searchText"/>
+   </div>
+   <div class="col s5">
+   <select multiple>
+      <option value="" disabled selected>Type</option>
+      <option value="Apartment">Apartment</option>
+      <option value="Town House">Town House</option>
+      <option value="Condo">Condo</option>
+      <option value="Single Family Home">Single Family Home</option>
+    </select>
+   </div>
+   <div class="col s3">
+   <select multiple>
+      <option value="" disabled selected>Sort By</option>
+      <option value="Apartment">Price</option>
+      <option value="Town House">Location</option>
+    </select>
+   </div>
+  </div>
+  <div dir-paginate="roommates in roommates.roommates | itemsPerPage: roommates.perPage" total-items="roommates.roommatesCount">
+        <div class="card-panel white  col s12 col l9 offset-l1">
+          <div class="black-text left">
+           <div class="chip">{{roommates.category.replace('Roommate_', '')}}</div>
+           <a>{{roommates.beds}} Bedroom {{roommates.subcategory}} in {{roommates.location.replace(', United States', '')}} </a>
+          </div>
+          <br>
+          <div class="black-text left">
+          {{roommates.price | currency:"$":0 }} per month | {{roommates.sqft}} Sqft
+         | {{roommates.dateFrom | date:'d MMM yy'}} to {{roommates.dateTo | date:'d MMM yy'}}
+         |<span am-time-ago="{{roommates.createdAt}}"></span>| {{roommates.contact.name}}
+         | {{roommates.contact.gender}}
+         
+          </div>
+    </div>
 </div>
 </div>
 <dir-pagination-controls on-page-change="roommates.pageChanged(newPageNumber)"></dir-pagination-controls>

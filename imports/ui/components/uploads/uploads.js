@@ -15,6 +15,7 @@ class Uploads {
         'ngInject';
 
         $reactive(this).attach($scope);
+        this.form={};
        
         this.helpers({
             progress() {
@@ -36,11 +37,11 @@ class Uploads {
     }
 
     addImageFiles(files){
-     this.files=files;
+     this.form.files=files;
     }
     addImages() {
-        if (this.files.length) {
-            this.currentFile = this.files[0];
+        if (this.form.files.length) {
+            this.currentFile = this.form.files[0];
             var uploader = new Slingshot.Upload("myFileUploads");
 
             var error = uploader.validate(this.currentFile);
@@ -75,5 +76,8 @@ export default angular.module(name, [
 ]).component(name, {
     template,
     controllerAs: name,
-    controller: Uploads
+    controller: Uploads,
+    bindings: {
+      form:'='
+    }
 })

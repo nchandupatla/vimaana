@@ -13,11 +13,7 @@ class NewRentals {
     this.$state = $state;
     $reactive(this).attach($scope);
     this.type=$stateParams.type;
-    if(this.type=='1'){
-      this.text="I Want To Offer Rentals";
-    }else{
-      this.text="I Am Looking for Rentals";
-    }
+    this.text=this.type;
     this.form={};
   } 
   next(id){
@@ -30,6 +26,7 @@ class NewRentals {
       this.form.verified=false;
       var email=this.form.contact.email;
       this.form.category=this.type;
+      this.form.createdAt=new Date();
       Rentals.insert(this.form, function(err, result){
         if(result){
         Meteor.call('createAccount', {

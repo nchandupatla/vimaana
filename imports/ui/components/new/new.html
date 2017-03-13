@@ -1,0 +1,46 @@
+  <form>
+  <div class="input-field">
+                <select ng-model="new.form.subcategory" id="Category">
+              <option value="" disabled selected>Select Room Category</option>
+              <option value="Apartment">Apartment</option>
+              <option value="Town House">Town House</option>
+              <option value="Condo">Condo</option>
+              <option value="Single Family Home">Single Family Home</option>
+            </select>
+              </div>
+              <div class="input-field">
+                <label for="start_loc">Location</label>
+                <input required ng-model="new.form.location" placeholder="" details="new.form.placeDetails" googleplace
+                  id="start_loc" type="text" class="validate">
+              </div>
+              <div class="input-field">
+                <label for="beds">No. of Beds</label>
+                <input limit-to="3" ng-model="new.form.beds" id="beds" type="number" class="validate">
+              </div>
+              <div class="input-field">
+                <label for="price">Price</label>
+                <input limit-to="10" ng-model="new.form.price" id="price" type="number" class="validate">
+              </div>
+              <div class="input-field">
+                <label for="sqft">Sq.ft</label>
+                <input limit-to="10"  ng-model="new.form.sqft" id="sqft" type="number" class="validate">
+              </div>
+              <div class="input-field">
+                 <label for="date1">Available From</label>
+                <input required  type="date" class="datepicker" ng-model="new.form.dateFrom" id="date1">
+              </div>
+              <div class="input-field">
+                <label for="date2">Available To</label>
+                <input required  type="date" class="datepicker" ng-model="new.form.dateTo" id="date2">
+              </div>
+              <div></div>
+  </form>
+<script>
+  $('select').material_select();
+  $('ul.tabs').tabs();
+  $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15, // Creates a dropdown of 15 years to control year
+    min: new Date()
+  });
+</script>
