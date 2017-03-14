@@ -1,27 +1,34 @@
- <br>
- <div class="row">
- <div class="col s4">
-   <select multiple>
+<br> <br>
+<div class="row">
+  <div class="col s3">
+    <select multiple>
       <option value="" disabled selected>Sort By</option>
       <option value="Apartment">Price</option>
       <option value="Town House">Location</option>
     </select>
-   </div>
-    <div class="col s4">
-   <select multiple>
+  </div>
+  <div class="col s3">
+    <select multiple>
       <option value="" disabled selected>Sort By</option>
       <option value="Apartment">Price</option>
       <option value="Town House">Location</option>
     </select>
-   </div>
-    <div class="col s4">
-   <select multiple>
+  </div>
+  <div class="col s3">
+    <select multiple>
       <option value="" disabled selected>Sort By</option>
       <option value="Apartment">Price</option>
       <option value="Town House">Location</option>
     </select>
-   </div>
- </div>
+  </div>
+  <div class="col s3">
+    <select multiple>
+      <option value="" disabled selected>Sort By</option>
+      <option value="Apartment">Price</option>
+      <option value="Town House">Location</option>
+    </select>
+  </div>
+</div>
 <div class="row">
   <!--<div class="col s12 col l9 offset-l1">
    <div class="col s3">
@@ -45,7 +52,7 @@
    </div>
   </div>-->
   <div dir-paginate="roommates in roommates.roommates | itemsPerPage: roommates.perPage" total-items="roommates.roommatesCount">
-        <!--<div class="card-panel white  col s12 col l9 offset-l1">
+    <!--<div class="card-panel white  col s12 col l9 offset-l1">
           <div class="black-text left">
            <div class="chip">{{roommates.category.replace('Roommate_', '')}}</div>
            <a>{{roommates.beds}} Bedroom {{roommates.subcategory}} in {{roommates.location.replace(', United States', '')}} </a>
@@ -60,19 +67,22 @@
           </div>
     </div>-->
     <dic class="col s12 m6 l3">
-    <div class="card">
+      <div class="card">
         <div class="card-image">
           <img src="img/sky.jpg">
           <!--<span class="card-title">{{roommates.price | currency:"$":0 }} /month</span>-->
           <!--<a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>-->
         </div>
         <div class="card-content">
-          <p><a>{{roommates.beds}} Bedroom {{roommates.subcategory}} in {{roommates.location.replace(', United States', '')}} </a></p>
+          <p><a ui-sref="housingDetails">{{roommates.beds}} Bedroom {{roommates.subcategory}} in {{roommates.location.replace(', United States', '')}} </a></p>
           <p>
-            {{roommates.price | currency:"$":0 }} /month | {{roommates.sqft}} Sqft
-         | {{roommates.dateFrom | date:'d MMM yy'}} to {{roommates.dateTo | date:'d MMM yy'}}
-         |<span am-time-ago="{{roommates.createdAt}}"></span>| {{roommates.contact.name}}
-          {{roommates.contact.gender}}
+            {{roommates.price | currency:"$":0 }} /month {{roommates.sqft}} Sqft
+          </p>
+          <p>
+            Available from {{roommates.dateFrom | date:'d MMM yy'}}
+          </p>
+           <p>
+          Updated: <span am-time-ago="{{roommates.createdAt}}"></span>
           </p>
         </div>
       </div>

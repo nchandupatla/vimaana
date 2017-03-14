@@ -29,12 +29,12 @@ class NewAd {
       $('.collapsible').collapsible();
     }
   }
-  onNext(style,id) {
+  onNext(style, id) {
     var cStyle = "." + style;
     $(cStyle).addClass("active");
     $('.collapsible').collapsible();
     $('html, body').animate({
-        scrollTop: $("#"+id).offset().top
+      scrollTop: $("#" + id).offset().top
     }, 2000);
   }
 
@@ -47,7 +47,7 @@ class NewAd {
 
       var error = uploader.validate(this.currentFile);
       if (error) {
-        console.error('Slingshot error' +error);
+        console.error('Slingshot error' + error);
       }
     }
     if (this.category == 'Roommate_Offer' || this.category == 'Roommate_Request') {
@@ -57,36 +57,35 @@ class NewAd {
       //var email = this.form.contact.email;
       this.form.category = this.category;
       this.form.createdAt = new Date();
-      var id=Roommates.insert(this.form, function (err, result) {
-        if (result) {
-          // Meteor.call('createAccount', {
-          //   email: email,
-          //   id: result,
-          // });
-          // this.addImages(result);
-        }
-      });
-          console.log('files ' + JSON.stringify(this.files)+" "+id);
-          this.files.forEach(function (file) {
-            uploader.send(file, function (error, downloadUrl) {
-              if (error) {
-                // Log service detailed response.
-                console.error('Error uploading', JSON.stringify(error));
-                alert(error);
-              } else {
-                Roommates.update({
-                  _id: id
-                }, {
-                    $push: {
-                      "files": downloadUrl
-                    }
-                  });
-              }
-            })
-          });
+      var id = Roommates.insert(this.form, function (err, result) {});
+      console.log('files ' + JSON.stringify(this.files) + " " + id);
+      if (this.files.length > 0) {
+        this.uploadImages(id);
+      }
     }
-    this.$state.go('postComplete');
+    this.$state.go('roommates');
   }
+
+  uploadImages(id) {
+    this.files.forEach(function (file) {
+      uploader.send(file, function (error, downloadUrl) {
+        if (error) {
+          // Log service detailed response.
+          console.error('Error uploading', JSON.stringify(error));
+          alert(error);
+        } else {
+          Roommates.update({
+            _id: id
+          }, {
+            $push: {
+              "files": downloadUrl
+            }
+          });
+        }
+      })
+    });
+  }
+
   addImageFiles(files) {
     this.files = files;
   }

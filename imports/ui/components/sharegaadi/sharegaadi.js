@@ -53,6 +53,7 @@ import {
 } from '../roommates/roommates';
 import { name as New } from '../new/new';
 import { name as Contact } from '../contact/contact';
+import { name as HousingDetail } from '../housingDetail/housingDetail';
 
 
 
@@ -165,7 +166,8 @@ export default angular.module(name, [
     RentalList,
     RoommateList,
     New,
-    Contact
+    Contact,
+    HousingDetail
   ]).component(name, {
     template,
     controllerAs: name,
