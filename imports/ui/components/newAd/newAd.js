@@ -84,9 +84,8 @@ class NewAd {
               }
             })
           });
-          $(".confirm").addClass("active");
-          $('.collapsible').collapsible();
     }
+    this.$state.go('postComplete');
   }
   addImageFiles(files) {
     this.files = files;
