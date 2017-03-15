@@ -18,16 +18,17 @@ class RoommateList {
     this.perPage = 9;
     this.page = 1;
     this.sort = {
-      fromLocation: 1
+      price: 1
     };
     this.searchText = '';
+    this.mSelectBeds=[1,2];
     this.type='1';
 
     this.subscribe('roommates', () => [{
         limit: parseInt(this.perPage),
         skip: parseInt((this.getReactively('page') - 1) * this.perPage),
         sort: this.getReactively('sort')
-      }, this.getReactively('searchText')
+      }, this.getReactively('searchText'), this.getReactively('mSelectBeds')
     ]);
 
     this.subscribe('users');
@@ -55,8 +56,22 @@ class RoommateList {
     this.page = newPage;
   }
 
-  sortChanged(sort) {
-    this.sort = sort;
+  sortChanged() {
+    this.sort = { 
+      price: parseInt(this.getReactively(this.priceSort))
+    };
+  }
+
+  bedsChanged(){
+    if(this.bedsSort){
+      //var res = this.bedsSort.split(",");
+      var ary=[];
+      this.bedsSort.forEach(function(key){
+         ary.push(parseInt(key));
+      })
+    console.log('dsad '+ary);
+     this.mSelectBeds=ary;
+    }
   }
 }
 

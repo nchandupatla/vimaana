@@ -4,9 +4,11 @@ import { Counts } from 'meteor/tmeasday:publish-counts';
 import { Roommates } from './collection';
 
 if (Meteor.isServer) {
-  Meteor.publish('roommates', function(options, searchString) {
+  Meteor.publish('roommates', function(options, searchString, something) {
     const selector = {
-     
+     "$and": [
+    { beds: {$in: something } }
+    ]
     };
 
     if (typeof searchString === 'string' && searchString.length) {
