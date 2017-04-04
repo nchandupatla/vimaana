@@ -1,16 +1,5 @@
 <div class="row">
- <nav>
-    <div>
-      <div class="col s12">
-        <a href="#!" class="breadcrumb">Home</a>
-        <a href="#!" class="breadcrumb">Select Post Category</a>
-        <a href="#!" class="breadcrumb">{{rideAdd.text}}</a>
-      </div>
-    </div>
-  </nav>
-    <!--<h5 class="center">Post Type: {{rideAdd.text}}</h5>-->
-    <br>
-    <form class="col s12 m6 l6  offset-m3 offset-l3" name="myForm"  novalidate>
+    <form name="myForm"  novalidate>
       <div class="row">
         <div class="input-field">
           <input required placeholder="" ng-model="rideAdd.ride.fromLocation" details="rideAdd.ride.fromPlaceDetails" googleplace id="start_loc" type="text" class="validate">

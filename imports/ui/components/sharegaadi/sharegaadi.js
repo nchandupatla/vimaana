@@ -21,6 +21,9 @@ import {
   name as Feedback
 } from '../feedback/feedback';
 import {
+  name as Feedback1
+} from '../newRides/newRides';
+import {
   name as Admin
 } from '../admin/admin';  
 import {
@@ -35,6 +38,9 @@ import {
 import {
   name as LandingPage
 } from '../landing_page/landing_page';
+import { name as New } from '../new/new';
+import { name as Contact } from '../contact/contact';
+import { name as HousingDetail } from '../housingDetail/housingDetail';
 import {
   name as NewAd
 } from '../newAd/newAd';
@@ -51,9 +57,6 @@ import {
 import {
   name as RoommateList
 } from '../roommates/roommates';
-import { name as New } from '../new/new';
-import { name as Contact } from '../contact/contact';
-import { name as HousingDetail } from '../housingDetail/housingDetail';
 
 
 
@@ -156,18 +159,19 @@ export default angular.module(name, [
     'accounts.ui',
     angularMoment,
     Feedback,
+    Feedback1,
     Admin,
     Verification,
     Login,
     ChangePwd,
     LandingPage,
-    NewAd,
     PostComplete,
-    RentalList,
-    RoommateList,
     New,
     Contact,
-    HousingDetail
+    HousingDetail,
+    NewAd,
+    RentalList,
+    RoommateList
   ]).component(name, {
     template,
     controllerAs: name,

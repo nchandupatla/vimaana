@@ -1,0 +1,48 @@
+    <form name="myForm" >
+      <div class="row">
+        <div class="input-field">
+        <label for="start_loc">Departure</label>
+          <input required  ng-model="rideAdd.ride.fromLocation" placeholder="" details="rideAdd.ride.fromPlaceDetails" googleplace id="start_loc" type="text" class="validate">
+        </div>
+        <div class="input-field">
+            <label for="end_location">Arrival</label>
+          <input required  ng-model="rideAdd.ride.toLocation" placeholder=""  details="rideAdd.ride.toPlaceDetails" googleplace id="end_location" type="text" class="validate">
+        </div>
+        <div class="input-field row s12 l12 m12">
+          <span class="col s6 l6 m6">
+          <label for="date">Date</label>
+          <input required  type="date" class="datepicker" ng-model="rideAdd.ride.date" id="date">
+          </span>
+           <span class="col s6 l6 m6">
+           <input id="time" type="time" ng-model="rideAdd.ride.time" required />
+           <label for="time">Time</label>
+           </span>
+        </div>
+        <div class="input-field">
+          <!--<i class="material-icons prefix md-24">attach_money</i>-->
+          <label for="price">Price</label>
+          <input limit-to="3"  ng-model="rideAdd.ride.price"  id="price" type="number" class="validate">
+        </div>
+      </div>
+    </form>
+
+
+<script>
+$('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15, // Creates a dropdown of 15 years to control year
+    min: new Date()
+  });
+
+   $('.chips-initial').material_chip({
+    data: [{
+      tag: 'English',
+    }, {
+      tag: 'Hindi',
+    }, {
+      tag: 'No Smoking',
+    }, {
+      tag: 'Music',
+    }],
+  });
+</script>

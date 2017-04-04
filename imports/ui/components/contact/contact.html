@@ -1,21 +1,28 @@
 <div class="row">
+     <div class="input-field">
+         <label for="email">Email</label>
+        <input required id="email" type="email" class="validate" ng-model="contact.form.contact.email">
+    </div>
+    <div class="input-field">
+       <a class="waves-effect waves-light btn" ng-click="contact.submit()" ng-hide="contact.isCreateNewAccount">Continue</a>
+    </div>
+
+    <div ng-show="contact.isCreateNewAccount">
+    <div class='input-field'>
+                <label for='password'>Password</label>
+                <input class='validate' type='password' name='password' id='password' ng-model="contact.form.contact.password" />
+              </div>
     <div class="input-field">
         <label for="name">Name</label>
         <input required id="name" type="tel" class="validate active" ng-model="contact.form.contact.name">
     </div>
     <div class="input-field">
-         <label for="email">Email</label>
-        <input required id="email" type="email" class="validate" ng-model="contact.form.contact.email">
-    </div>
-    <div class="input-field">
         <label for="phone">Mobile</label>
         <input required id="phone" type="tel" class="validate active" ng-model="contact.form.contact.mobile">
     </div>
-    <!--<div class="input-field">
+    <div class="input-field">
      <label for="filled-in-box">Would you like our users to see this contact info directly or hide them?</label>
     <input type="checkbox" ng-model="contact.form.contact.preference" id="filled-in-box" checked="checked"/>
-    </div>-->
-
-   <br>
-    <label>Please enter valid email or mobile as you will be asked to verify your email or mobile number for post to be saved successfully</label>
+    </div>
+    </div>
 </div>

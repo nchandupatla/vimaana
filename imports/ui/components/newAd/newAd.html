@@ -8,24 +8,77 @@
           <div class="collapsible-body container">
             <form>
               <div class="input-field">
-                <select ng-model="newAd.category" ng-change="newAd.onTypeChange()">
+                <select ng-model="newAd.category">
                 <option value="" disabled selected>Select</option>
-                  <option value="Rental_Offer">Rental Offer</option>
-                  <option value="Rental_Request">Rental Request</option>
-                  <option value="Roommate_Offer">Roommate Offer</option>
-                  <option value="Roommate_Request">Roommate Request</option>
-                  <option value="Rideshare_Offer">Rideshare Offer</option>
-                  <option value="Rideshare_Request">Rideshare Request</option>
+                  <option value="Roommate">Roommate Ad</option>
+                  <option value="Rideshare">Carpool Ad</option>
               </select>
+              </div>
+              <div ng-if="newAd.category==='Rideshare'">
+                <div class="input-field left">
+                  <input class="with-gap" value="Offer" name="group3" type="radio" id="test5" ng-model="newAd.form.req" />
+                  <label for="test5">I am offering ride</label>
+                  <input class="with-gap " value="Request" name="group3" type="radio" id="test6" ng-model="newAd.form.req" />
+                  <label for="test6">I am requesting ride</label>
+                </div><br><br><br>
+                <div class="input-field">
+                  <a class="waves-effect waves-light btn center" ng-click="newAd.onNext('second', 'divid1')">Continue</a>
+                </div>
+                <br>
+              </div>
+              <div ng-if="newAd.category==='Roommate'">
+                <div class="input-field left">
+                  <input class="with-gap" value="Offer" name="group3" type="radio" id="test5" ng-model="newAd.form.req" />
+                  <label for="test5">I am offering room</label>
+                  <input class="with-gap " value="Request" name="group3" type="radio" id="test6" ng-model="newAd.form.req" />
+                  <label for="test6">I am requesting room</label>
+                </div><br><br><br>
+                <div class="input-field">
+                  <select ng-model="newAd.form.roomType">
+              <option value="" selected>Select Room Type</option>
+              <option value="Any">Any</option>
+              <option value="Offer">Single Room</option>
+              <option value="Request">Shared Room</option>
+              <option value="Request">Paying Guest</option>
+            </select>
+                </div>
+                <div class="input-field">
+                  <select ng-model="newAd.form.subcategory" id="Category">
+              <option value="" disabled selected>Select Room Category</option>
+              <option value="Any">Any</option>
+              <option value="Apartment">Apartment</option>
+              <option value="Town House">Town House</option>
+              <option value="Condo">Condo</option>
+              <option value="Single Family Home">Single Family Home</option>
+            </select>
+                </div>
+                <div class="input-field">
+                  <select ng-model="newAd.form.term">
+              <option value="" disabled selected>Select Term</option>
+              <option value="any">Any</option>
+              <option value="long">Long Term (> 1 year)</option>
+              <option value="medium">Medium Term (0-12 mon)</option>
+              <option value="short">Short Term (0-3 mon)</option>
+            </select>
+                </div>
+                <div class="input-field">
+                  <a class="waves-effect waves-light btn center" ng-click="newAd.onNext('second', 'divid1')">Continue</a>
+                </div>
+                <br>
               </div>
             </form>
           </div>
         </li>
         <li>
           <div class="collapsible-header left-align brown lighten-2 white-text second">Post Details</div>
-          <div class="collapsible-body container">
+          <div id="divid1" class="collapsible-body container">
             <form>
-              <new form="newAd.form"></new>
+              <div ng-if="newAd.category==='Roommate'">
+                <new form="newAd.form"></new>
+              </div>
+              <div ng-if="newAd.category==='Rideshare'">
+                <feedback1></feedback1>
+              </div>
               <div class="input-field">
                 <a class="waves-effect waves-light btn center" ng-click="newAd.onNext('third', 'divid2')">Continue</a>
               </div>
@@ -37,8 +90,7 @@
           <div class="collapsible-header left-align brown lighten-2 white-text third">Upload Images</div>
           <div id="divid2" class="collapsible-body container">
             <br>
-            <a ngf-accept="'image/*'" ngf-select ngf-change="newAd.addImageFiles($files)"  ngf-multiple="true" class="left">Upload Images</a>
-            (You can upload upto 6 images)
+            <a ngf-accept="'image/*'" ngf-select ngf-change="newAd.addImageFiles($files)" ngf-multiple="true" class="left">Upload Images</a>            (You can upload upto 6 images)
             <br>
             <div class="left-align" ng-repeat="file in newAd.files">
               {{file.name}}
@@ -56,9 +108,49 @@
           <div class="collapsible-header left-align brown lighten-2 white-text fourth">Contact Information</div>
           <div id="divid3" class="collapsible-body container">
             <form>
-              <contact form="newAd.form"></contact>
-              <div class="input-field">
-                <a class="waves-effect waves-light btn" ng-click="newAd.submit()">Submit</a>
+              <!--<contact form="newAd.form"></contact>-->
+              <div class="row">
+                <h6 ng-show="newAd.isExistingAccount || newAd.isCreateNewAccount"><b>{{newAd.msg}}<b></h6>
+                <div class="input-field">
+                  <label for="email">Email</label>
+                  <!--<contact form="newAd.form"></contact>-->
+                  <input required id="email" type="email" class="validate" ng-model="newAd.form.contact.email">
+                </div>
+                <div ng-model="newAd.check"></div><div ng-model="newAd.createAccount"></div>
+                <div class="input-field">
+                  <a class="waves-effect waves-light btn" ng-hide="newAd.isExistingAccount || newAd.isCreateNewAccount" ng-click="newAd.emailExists()">Continue</a>
+                </div>
+                <div ng-show="newAd.isExistingAccount">
+                  <div class='input-field'>
+                    <label for='password'>Password</label>
+                    <input class='validate' type='password' name='password' id='password' ng-model="newAd.form.contact.password" />
+                  </div>
+                  <div class="input-field">
+                    <a class="waves-effect waves-light btn" ng-click="newAd.loginToSubmit()">Login to Submit</a> or <a ng-click="newAd.signInDifferent()">Sign with different email</a>
+                  </div>
+                </div>
+                <div ng-show="newAd.isCreateNewAccount">
+                  <div class='input-field'>
+                    <label for='password'>Password</label>
+                    <input class='validate' type='password' name='password' id='password' ng-model="newAd.form.contact.password" />
+                  </div>
+                  <div class="input-field">
+                    <label for="name">Name</label>
+                    <input required id="name" class="validate active" ng-model="newAd.form.contact.name">
+                  </div>
+                  <div class="input-field">
+                    <label for="phone">Mobile</label>
+                    <input required id="phone" type="tel" class="validate active" ng-model="newAd.form.contact.mobile">
+                  </div>
+                  <div class="input-field">
+                    <input type="checkbox" ng-model="newAd.form.contact.preference" id="filled-in-box" checked="checked" />
+                  <p>
+                    Would you like our users to see this contact info directly or hide them?</p>
+                  </div>
+                    <div class="input-field">
+                      <a class="waves-effect waves-light btn" ng-click="newAd.createAccountAndSubmit()">Submit</a>
+                    </div>
+                </div>
               </div>
             </form>
             <br>
@@ -69,12 +161,12 @@
   </center>
 </main>
 <script>
- $(document).ready(function() {
+  $(document).ready(function () {
     $('select').material_select();
-  $('.datepicker').pickadate({
-    selectMonths: true, // Creates a dropdown to control month
-    selectYears: 15, // Creates a dropdown of 15 years to control year
-    min: new Date()
-  });
+    $('.datepicker').pickadate({
+      selectMonths: true, // Creates a dropdown to control month
+      selectYears: 15, // Creates a dropdown of 15 years to control year
+      min: new Date()
+    });
   });
 </script>

@@ -9,6 +9,10 @@ import {
 } from 'meteor/email';
 import { Rides } from './rides';
 
+export function verifyUserEmail(email){
+    return Accounts.findUserByEmail(email);
+}
+
 export function verifyAccount(obj){
  var decodedString = Meteor.call('base64Decode',obj.id);
  var ride=Rides.findOne({_id: decodedString});
@@ -67,6 +71,7 @@ export function createNewAccount(userObj) {
 }
 }
 
+
 export function createAccount(userObj) {
     var userExists = Accounts.findUserByEmail(userObj.email);
     console.log('inside user '+JSON.stringify(userExists));
@@ -84,5 +89,6 @@ Meteor.methods({
     sendEmail,
     createAccount,
     verifyAccount,
-    createNewAccount
+    createNewAccount,
+    verifyUserEmail
 });
